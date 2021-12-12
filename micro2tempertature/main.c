@@ -14,10 +14,17 @@
 //Custom libraries
 #include "TempAndCommsLibraries/ds18b20_2021.h" //temperature sensor
 #include "TempAndCommsLibraries/i2c_2021.h" //I2C 
-#include "TempAndCommsLibraries/serial_2021.h" //UART
+#include "TempAndCommsLibraries/serial_2021.h" //UART 
 
-#define GPIOA 0x12				//---General Purpose I/O Register A
-#define GPIOB 0x13				//---General Purpose I/O Register B
+//GPIOs
+#define GPIOA 0x12				
+#define GPIOB 0x13				
+
+//DS defines
+#define SKIP_ROM 0xCC
+#define CONVERT_T 0x44
+#define WRITE_SCRATCHPAD 0x4E
+#define READ_SCRATCHPAD 0xBE
 
 #define BUFFER_SIZE 250
 char buffer[BUFFER_SIZE];
@@ -65,7 +72,8 @@ int main(void)
 	    ds_writebyte(READ_SCRATCHPAD);
 	    temperature[0] = ds_readbyte();
 	    temperature[1] = ds_readbyte();
-	    //USART_send(temperature[1] + temperature[0]);
+	    
+		USART_send(temperature[1] + temperature[0]);
 	    // Sends reset to stop reading scratchpad
 	    ds_init(); //resets
 	    
@@ -119,7 +127,8 @@ int main(void)
 		    break;
 		    
 		    default:
-		    mcp_write(GPIOA,0b0000010101010);
+		    // mcp_write(GPIOA,0b0000010101010);
+			mcp_write(GPIOA,0b1111111111111);
 		    break;
 	    }
 	    _delay_ms(1000); // Waits 10 seconds between readings

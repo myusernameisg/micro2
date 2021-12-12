@@ -1,24 +1,24 @@
 /* DS18B20 Self made Library
 Author: Guillermo J. Ramires
 Student nr: 464852 */
+#pragmaonce
+
 #ifndef DS18B20_H_
 #define DS18B20_H_
-
 
 #include <avr/io.h>
 #include <util/delay.h>
 
-#define SKIP_ROM 0xCC
-#define CONVERT_T 0x44
-#define WRITE_SCRATCHPAD 0x4E
-#define READ_SCRATCHPAD 0xBE
+void ds_lowpulse()//clears bit by sending low pulse
+{
+	PORTB &= ~(1 << PORTB0);
+	DDRB |= (1 << PORTB0);
+}
 
 uint8_t ds_init() 
 {
 	uint8_t ack;
-	// Sends reset pulse - digital '0'
-	PORTB &= ~(1 << PORTB0);
-	DDRB |= (1 << PORTB0);
+	ds_lowpulse();
 	_delay_us(480);
 	// Releases bus, pull back kicks in
 	DDRB &= ~(1 << PORTB0);
@@ -33,12 +33,11 @@ uint8_t ds_init()
 uint8_t ds_readbit(void) 
 {
 	uint8_t bit = 0;
-	// Send low pulse for 1us
-	PORTB &= ~(1 << PORTB0);
-	DDRB |= (1 << PORTB0);
+	
+	ds_lowpulse();
 	_delay_us(1);
 	DDRB &= ~(1 << PORTB0);
-	_delay_us(14);
+	_delay_us(15);
 	
 	if(PINB & (1 << PORTB0)) 
 	{
@@ -51,9 +50,7 @@ uint8_t ds_readbit(void)
 
 void ds_writebit(uint8_t bit) 
 {
-	// Send low pulse for 1us
-	PORTB &= ~(1 << PORTB0);
-	DDRB |= (1 << PORTB0);
+	ds_lowpulse();
 	_delay_us(1);
 	
 	// Quickly releases if wants to write logic '1', if not, waits
