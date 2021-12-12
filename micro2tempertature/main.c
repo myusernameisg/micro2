@@ -73,7 +73,7 @@ int main(void)
 	    temperature[0] = ds_readbyte();
 	    temperature[1] = ds_readbyte();
 	    
-		USART_send(temperature[1] + temperature[0]);
+		USART_send(temperature[1] + temperature[0]); //previously commented USART, maybe cause of no USART sending. test next time 
 	    // Sends reset to stop reading scratchpad
 	    ds_init(); //resets
 	    
@@ -86,7 +86,7 @@ int main(void)
 		    half /= 10;
 	    }
 	    sprintf(buffer, "%02d.%02d\r", temp, half);
-	    //USART_send(buffer, "%02d.%02d\r", temp, half);
+	    USART_send(buffer, "%02d.%02d\r", temp, half);
 	    
 	    
 	    // Transmits temperature to I2C
