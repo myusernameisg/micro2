@@ -1,0 +1,20 @@
+C:\Users\guill\OneDrive\Documents\.MSI P65\University\Year 3\S2\Micro 2\micro2forms\micro2forms\bin\Debug\micro2forms.exe.config
+C:\Users\guill\OneDrive\Documents\.MSI P65\University\Year 3\S2\Micro 2\micro2forms\micro2forms\bin\Debug\micro2forms.exe
+C:\Users\guill\OneDrive\Documents\.MSI P65\University\Year 3\S2\Micro 2\micro2forms\micro2forms\bin\Debug\micro2forms.pdb
+C:\Users\guill\OneDrive\Documents\.MSI P65\University\Year 3\S2\Micro 2\micro2forms\micro2forms\obj\Debug\micro2forms.csprojAssemblyReference.cache
+C:\Users\guill\OneDrive\Documents\.MSI P65\University\Year 3\S2\Micro 2\micro2forms\micro2forms\obj\Debug\micro2forms.Form1.resources
+C:\Users\guill\OneDrive\Documents\.MSI P65\University\Year 3\S2\Micro 2\micro2forms\micro2forms\obj\Debug\micro2forms.Properties.Resources.resources
+C:\Users\guill\OneDrive\Documents\.MSI P65\University\Year 3\S2\Micro 2\micro2forms\micro2forms\obj\Debug\micro2forms.csproj.GenerateResource.cache
+C:\Users\guill\OneDrive\Documents\.MSI P65\University\Year 3\S2\Micro 2\micro2forms\micro2forms\obj\Debug\micro2forms.exe
+C:\Users\guill\OneDrive\Documents\.MSI P65\University\Year 3\S2\Micro 2\micro2forms\micro2forms\obj\Debug\micro2forms.pdb
+D:\.projects\micro2\micro2forms\micro2forms\bin\Debug\micro2forms.exe.config
+D:\.projects\micro2\micro2forms\micro2forms\bin\Debug\micro2forms.exe
+D:\.projects\micro2\micro2forms\micro2forms\bin\Debug\micro2forms.pdb
+D:\.projects\micro2\micro2forms\micro2forms\obj\Debug\micro2forms.csproj.AssemblyReference.cache
+D:\.projects\micro2\micro2forms\micro2forms\obj\Debug\micro2forms.csproj.SuggestedBindingRedirects.cache
+D:\.projects\micro2\micro2forms\micro2forms\obj\Debug\micro2forms.Form1.resources
+D:\.projects\micro2\micro2forms\micro2forms\obj\Debug\micro2forms.Properties.Resources.resources
+D:\.projects\micro2\micro2forms\micro2forms\obj\Debug\micro2forms.csproj.GenerateResource.cache
+D:\.projects\micro2\micro2forms\micro2forms\obj\Debug\micro2forms.csproj.CoreCompileInputs.cache
+D:\.projects\micro2\micro2forms\micro2forms\obj\Debug\micro2forms.exe
+D:\.projects\micro2\micro2forms\micro2forms\obj\Debug\micro2forms.pdb
