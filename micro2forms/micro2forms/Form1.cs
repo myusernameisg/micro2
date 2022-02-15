@@ -13,8 +13,8 @@ namespace micro2forms
 {
     public partial class Form1 : Form
     {
-        string readBuffer;
-        string temperature;
+        int readyToGraph = 0;
+        delegate void setNewDataCallback(string newData);
         public Form1()
         {
             InitializeComponent();
@@ -26,33 +26,16 @@ namespace micro2forms
             cBoxCOMPort.Items.AddRange(ports);
         }
 
-        public void DoUpdate(object sender, System.EventArgs e)
-        {
-            rTextTemp.Text = readBuffer;//show value
-        }
-
-        public void DoUpdatee()
-        {
-            rTextTemp.Text = readBuffer;//show value
-        }
-
-        private void SerialPort1_DataReceived(System.Object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
-        {
-            readBuffer = serialPort1.ReadLine(); 
-            Invoke(new EventHandler(DoUpdate)); 
-        }
 
     private void Start_Click(object sender, EventArgs e)
         {
             try
             {
-                SerialPort temperaturePort = new SerialPort();
-
-                temperaturePort.PortName = cBoxCOMPort.Text;
-                temperaturePort.BaudRate = 9600;
-                temperaturePort.DataBits = 8;
-                temperaturePort.StopBits = (StopBits)1;
-                temperaturePort.Parity = 0;
+                serialPort1.PortName = cBoxCOMPort.Text;
+                serialPort1.BaudRate = 9600;
+                serialPort1.DataBits = 8;
+                serialPort1.StopBits = StopBits.One;
+                serialPort1.Parity = 0;
 
                 serialPort1.Open();
             }
@@ -65,16 +48,29 @@ namespace micro2forms
             {
                 MessageBox.Show( "COM Port Open", "Information stream beginnig", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                serialPort1.ReceivedBytesThreshold = 20;
-                serialPort1.NewLine = "\r";
-                serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(SerialPort1_DataReceived);
-                rTextTemp.Text = readBuffer;
-                //while (serialPort1.IsOpen)
-                //{
-                    TemperatureGraph.Series["Temperature"].Points.AddXY(DateTime.Now.Minute, readBuffer);
-                    DoUpdatee();
-
-                //}
+                serialPort1.DataReceived += new SerialDataReceivedEventHandler(SerialPort1_DataReceived);
+                timer1.Enabled = true;
+            }
+        }
+        private void SerialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            if (!(readyToGraph == 2))
+            {
+                readyToGraph++;
+            }
+            else DoUpdate(serialPort1.ReadLine());         
+        }
+        public void DoUpdate(string data)
+        {
+            if(this.TemperatureGraph.InvokeRequired)
+            {
+                setNewDataCallback dataCallback = new setNewDataCallback(DoUpdate);
+                this.Invoke(dataCallback, new object[] { data });
+            }
+            else
+            {
+                this.TemperatureGraph.Series.FindByName("Temperature").Points.AddY(int.Parse(data));
+                rTextTemp.Text = data;
             }
         }
 
@@ -83,6 +79,7 @@ namespace micro2forms
             if (serialPort1.IsOpen)
             {
                 serialPort1.Close();
+                MessageBox.Show("COM Port Closed", "Information stream stopping", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

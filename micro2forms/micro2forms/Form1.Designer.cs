@@ -42,6 +42,7 @@
             this.cBoxCOMPort = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.rTextTemp = new System.Windows.Forms.RichTextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.TemperatureGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTemperature)).BeginInit();
             this.SuspendLayout();
@@ -178,6 +179,7 @@
         private System.Windows.Forms.ComboBox cBoxCOMPort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox rTextTemp;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
